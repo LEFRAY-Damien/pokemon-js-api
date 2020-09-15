@@ -1,0 +1,24 @@
+/* Body */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Image de fond body */
+.image-de-fond-body {
+    background-size: cover;
+    background-attachment: fixed;
+    size: 100vh;
+    background-image: url(pokeepee.webp); }
+  
+/* Centrer une div */
+.center-div {
+    display: inline-block; }
+
+/* Blanc transparent */
+.blanc_transparent {
+    background-color: rgba(225, 225, 0, 0.5); }
+
+.bdr {
+    border: 2px solid black;
+}
