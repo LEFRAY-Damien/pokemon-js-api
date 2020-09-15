@@ -19,17 +19,10 @@ request.onload = // La fonction laod est declenché quand une reponce du serveur
 
         var pokedexJson = request.response;
         // reponse requete stocker dans la variable pokedexJson
-        console.log('1')
-        console.log(pokedexJson);
-        console.log('2')
-        console.log(pokedexJson[0]);
 
         showPokemon(pokedexJson);
         // cree l'obj showPokemon qui est = a la variable pokedexJson
-        console.log('3')
-        console.log(showPokemon);
     }
-
 
 
 function showPokemon(jsonObj) {
@@ -43,7 +36,7 @@ function showPokemon(jsonObj) {
 
         // creation des element .........................................
 
-        var myArticle = document.createElement('article');
+        var myArticle = document.createElement('li');
         // cree un nouvelle article 'OBLIGATOIRE'
 
         var name = document.createElement('h2');
@@ -76,15 +69,15 @@ function showPokemon(jsonObj) {
         genre.textContent = 'Type';
         // insert le genre
 
-        Attaque.textContent = 'Attaque: '+ listePokemon[i].base.Attack;
+        Attaque.textContent = 'Attaque: ' + listePokemon[i].base.Attack;
 
-        Defense.textContent = 'Defence: ' +listePokemon[i].base.Defense;
+        Defense.textContent = 'Defence: ' + listePokemon[i].base.Defense;
 
-        vitesse.textContent = 'Vitesse: '+ listePokemon[i].base.Speed;
+        vitesse.textContent = 'Vitesse: ' + listePokemon[i].base.Speed;
         //...............................................................
         // boucle pour le Type
         var Ellement = listePokemon[i].type;
-        for (var j = 0; j<Ellement.length; j++){
+        for (var j = 0; j < Ellement.length; j++) {
             var listItem = document.createElement('li');
             listItem.textContent = Ellement[j];
             genre.appendChild(listItem);
@@ -111,3 +104,58 @@ function showPokemon(jsonObj) {
     }
 
 }
+
+// ............................FILTRE .........................
+
+function myFunction() {
+
+    // Déclaration de nos variables
+    var input, filter, ul, li, a, k, txtValue;
+
+    // Récupération du input sur l'HTML
+    input = document.getElementById("myInput");
+
+    // atribuons la variable filter a la récupération de notre valeur de notre input
+    filter = input.value.toUpperCase();
+
+    // On récupère la liste complète grace à ul
+    ul = document.getElementById("myUL");
+
+    //  On définit que li est un enfant de ul
+    li = ul.getElementsByTagName('li');
+
+    // Ici nous avons la boucle qui permet de trier nos résultat
+    for (k = 0; k < li.length; k++) {
+
+        // Ici on définit a comme étant l'enfant de li[i] Ici ils recherche des "h2"
+        h2 = li[k].getElementsByTagName("h2")[0];
+
+        // txtValue est egale au contenu de a
+        h2txtValue = (h2.textContent || h2.innerText).toUpperCase().indexOf(filter) > -1;
+
+        // Ici on check si notre txtValue est bien égale à filter
+        if (h2txtValue) {
+
+            // On laisse notre class vide si ça match
+            li[k].style.display = "";
+        } else {
+            // Sinon on les fait disparaitre
+            li[k].style.display = "none";
+        }
+    }
+
+}
+
+// // txtValue est egale au contenu de a
+// h2txtValue = (h2.textContent || h2.innerText);
+
+// // Ici on check si notre txtValue est bien égale à filter
+// if (txtValue.toUpperCase().indexOf(filter) > -1) {
+
+//     // On laisse notre class vide si ça match
+//     li[k].style.display = "";
+// } else {
+//     // Sinon on les fait disparaitre
+//     li[k].style.display = "none";
+// }
+// }
