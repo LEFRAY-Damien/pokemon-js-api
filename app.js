@@ -19,11 +19,9 @@ request.onload = // La fonction laod est declenché quand une reponce du serveur
 
         var pokedexJson = request.response;
         // reponse requete stocker dans la variable pokedexJson
-
         showPokemon(pokedexJson);
         // cree l'obj showPokemon qui est = a la variable pokedexJson
     }
-
 
 function showPokemon(jsonObj) {
     // creation de la fonction avec parametre jsonObj
@@ -39,20 +37,15 @@ function showPokemon(jsonObj) {
         var myArticle = document.createElement('li');
         // cree un nouvelle article 'OBLIGATOIRE'
 
-        var name = document.createElement('h2');
+        var name = document.createElement('h3');
         // cree un h2 pour metre le nom du villageois
-
         var genre = document.createElement('ul');
         // Cree un paragraphe pour l'espece
-
         var vitesse = document.createElement('p');
         // Cree un paragraphe pour l'anniversaire
-
         var hp = document.createElement('p');
-
         var Defense = document.createElement('p');
         // Cree un paragraphe pour le hobies
-
         var Attaque = document.createElement('p');
         // Cree un paragraphe pour le genre M ou F
 
@@ -68,37 +61,20 @@ function showPokemon(jsonObj) {
         name.textContent = listePokemon[i].name.french;
         // insert le nom du villageoi
 
-        genre.textContent = 'Type';
+        genre.textContent = 'Type:' + ' ' + listePokemon[i].type;
         // insert le genre
-
         Attaque.textContent = 'Attaque: ' + listePokemon[i].base.Attack;
-
         hp.textContent = 'HP: ' + listePokemon[i].base.HP;
-
         Defense.textContent = 'Defence: ' + listePokemon[i].base.Defense;
-
         vitesse.textContent = 'Vitesse: ' + listePokemon[i].base.Speed;
         //...............................................................
-        // boucle pour le Type
-        var Ellement = listePokemon[i].type;
-        for (var j = 0; j < Ellement.length; j++) {
-            var listItem = document.createElement('li');
-            listItem.textContent = Ellement[j];
-            genre.appendChild(listItem);
-        }
 
         // relié le tout a l'article
-
         myArticle.appendChild(name);
-
         myArticle.appendChild(hp);
-
         myArticle.appendChild(Attaque);
-
         myArticle.appendChild(Defense);
-
         myArticle.appendChild(vitesse);
-
         myArticle.appendChild(genre);
 
         // .............................................................
@@ -111,60 +87,42 @@ function showPokemon(jsonObj) {
 
 }
 
-// ............................FILTRE .........................
-
+// ........................FILTRE...........................................................
 function myFunction() {
 
     // Déclaration de nos variables
-    var input, filter, ul, li, htitre, k, txtValue;
+    var input, filter, ul, li, a, j, txtValue;
 
-    // Récupération du input sur l'HTML
+    // Récupération du input
     input = document.getElementById("myInput");
 
     // atribuons la variable filter a la récupération de notre valeur de notre input
     filter = input.value.toUpperCase();
 
-    // // On récupère la liste complète grace à ul
+    // On récupère la liste complète grace à ul
     ul = document.getElementById("myUL");
 
-    // On récupère la liste complète grace à ul
-    // ul = document.querySelector('ul');
-
     //  On définit que li est un enfant de ul
-    li = ul.getElementsByTagName('li');
+    li = ul.getElementsByTagName("li");
 
     // Ici nous avons la boucle qui permet de trier nos résultat
-    for (k = 0; k < li.length; k++) {
+    for (j = 0; j < li.length; j++) {
 
-        // Ici on définit htitre comme étant l'enfant de li[k] Ici ils recherche des "h2"
-        htitre = li[k].getElementsByTagName("h2")[0];
+        // Ici on définit a comme étant l'enfant de li[i] Ici ils recherche des "h3"
+        a = li[j].getElementsByTagName("h3")[0];
 
-        // txtValue est egale au contenu de htitre
-        txtValue = htitre.textContent || htitre.innerText;
+        // txtValue est egale au contenu de a
+        txtValue = a.textContent || a.innerText;
 
         // Ici on check si notre txtValue est bien égale à filter
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
 
             // On laisse notre class vide si ça match
-            li[k].style.display = "";
+            li[j].style.display = "";
         } else {
             // Sinon on les fait disparaitre
-            li[k].style.display = "none";
+            li[j].style.display = "none";
         }
     }
-
 }
-
-// // txtValue est egale au contenu de a
-// h2txtValue = (h2.textContent || h2.innerText);
-
-// // Ici on check si notre txtValue est bien égale à filter
-// if (txtValue.toUpperCase().indexOf(filter) > -1) {
-
-//     // On laisse notre class vide si ça match
-//     li[k].style.display = "";
-// } else {
-//     // Sinon on les fait disparaitre
-//     li[k].style.display = "none";
-// }
-// }
+// ........................FILTRE...........................................................
