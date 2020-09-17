@@ -48,6 +48,8 @@ function showPokemon(jsonObj) {
         var vitesse = document.createElement('p');
         // Cree un paragraphe pour l'anniversaire
 
+        var hp = document.createElement('p');
+
         var Defense = document.createElement('p');
         // Cree un paragraphe pour le hobies
 
@@ -71,6 +73,8 @@ function showPokemon(jsonObj) {
 
         Attaque.textContent = 'Attaque: ' + listePokemon[i].base.Attack;
 
+        hp.textContent = 'HP: ' + listePokemon[i].base.HP;
+
         Defense.textContent = 'Defence: ' + listePokemon[i].base.Defense;
 
         vitesse.textContent = 'Vitesse: ' + listePokemon[i].base.Speed;
@@ -87,11 +91,13 @@ function showPokemon(jsonObj) {
 
         myArticle.appendChild(name);
 
+        myArticle.appendChild(hp);
+
         myArticle.appendChild(Attaque);
 
-        myArticle.appendChild(vitesse);
-
         myArticle.appendChild(Defense);
+
+        myArticle.appendChild(vitesse);
 
         myArticle.appendChild(genre);
 
@@ -110,7 +116,7 @@ function showPokemon(jsonObj) {
 function myFunction() {
 
     // Déclaration de nos variables
-    var input, filter, ul, li, a, k, txtValue;
+    var input, filter, ul, li, htitre, k, txtValue;
 
     // Récupération du input sur l'HTML
     input = document.getElementById("myInput");
@@ -118,8 +124,11 @@ function myFunction() {
     // atribuons la variable filter a la récupération de notre valeur de notre input
     filter = input.value.toUpperCase();
 
-    // On récupère la liste complète grace à ul
+    // // On récupère la liste complète grace à ul
     ul = document.getElementById("myUL");
+
+    // On récupère la liste complète grace à ul
+    // ul = document.querySelector('ul');
 
     //  On définit que li est un enfant de ul
     li = ul.getElementsByTagName('li');
@@ -127,14 +136,14 @@ function myFunction() {
     // Ici nous avons la boucle qui permet de trier nos résultat
     for (k = 0; k < li.length; k++) {
 
-        // Ici on définit a comme étant l'enfant de li[i] Ici ils recherche des "h2"
-        h2 = li[k].getElementsByTagName("h2")[0];
+        // Ici on définit htitre comme étant l'enfant de li[k] Ici ils recherche des "h2"
+        htitre = li[k].getElementsByTagName("h2")[0];
 
-        // txtValue est egale au contenu de a
-        h2txtValue = (h2.textContent || h2.innerText).toUpperCase().indexOf(filter) > -1;
+        // txtValue est egale au contenu de htitre
+        txtValue = htitre.textContent || htitre.innerText;
 
         // Ici on check si notre txtValue est bien égale à filter
-        if (h2txtValue) {
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
 
             // On laisse notre class vide si ça match
             li[k].style.display = "";
